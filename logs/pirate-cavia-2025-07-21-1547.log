@@ -1,0 +1,298 @@
+﻿[2025-07-21 15:48:13] Geselecteerde opslaglocatie: C:\qqqq
+[2025-07-21 15:48:38] === NIEUWE DOWNLOADSESSIE GESTART ===
+[2025-07-21 15:48:38] URL: https://www.youtube.com/watch?v=VXKGa6EziIc
+[2025-07-21 15:48:38] Geselecteerde formaten: MP3, MP4, WAV
+[2025-07-21 15:48:38] MP3 bitrate: 320k
+[2025-07-21 15:48:38] Playlist download: False
+[2025-07-21 15:48:38] Origineel behouden: False
+[2025-07-21 15:48:38] Bestanden tonen: True
+[2025-07-21 15:48:38] Opslaglocatie: C:\qqqq
+[2025-07-21 15:48:38] Logbestand: .\logs\pirate-cavia-2025-07-21-1547.log
+[2025-07-21 15:48:38] ==================================
+[2025-07-21 15:48:38] Download origineel bestand...
+[2025-07-21 15:48:38] Uitvoeren: .\ytdl\yt-dlp.exe -k --ffmpeg-location .\tools\ffmpeg.exe "https://www.youtube.com/watch?v=VXKGa6EziIc" -o "C:\qqqq/%(title)s.%(ext)s"
+[2025-07-21 15:49:35] [youtube] Extracting URL: https://www.youtube.com/watch?v=VXKGa6EziIc
+[youtube] VXKGa6EziIc: Downloading webpage
+[youtube] VXKGa6EziIc: Downloading tv client config
+[youtube] VXKGa6EziIc: Downloading tv player API JSON
+[youtube] VXKGa6EziIc: Downloading ios player API JSON
+[youtube] VXKGa6EziIc: Downloading m3u8 information
+[info] VXKGa6EziIc: Downloading 1 format(s): 248+251
+[download] Destination: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).f248.webm
+
+[download]   0.0% of   16.52MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   16.52MiB at    1.37MiB/s ETA 00:12  
+[download]   0.0% of   16.52MiB at    2.04MiB/s ETA 00:08
+[download]   0.1% of   16.52MiB at    3.16MiB/s ETA 00:05
+[download]   0.2% of   16.52MiB at    5.69MiB/s ETA 00:02
+[download]   0.4% of   16.52MiB at    5.37MiB/s ETA 00:03
+[download]   0.8% of   16.52MiB at    6.69MiB/s ETA 00:02
+[download]   1.5% of   16.52MiB at    8.76MiB/s ETA 00:01
+[download]   3.0% of   16.52MiB at   10.62MiB/s ETA 00:01
+[download]   6.0% of   16.52MiB at   10.75MiB/s ETA 00:01
+[download]  12.1% of   16.52MiB at   10.46MiB/s ETA 00:01
+[download]  24.2% of   16.52MiB at    9.87MiB/s ETA 00:01
+[download]  48.4% of   16.52MiB at    9.73MiB/s ETA 00:00
+[download]  58.0% of   16.52MiB at   10.10MiB/s ETA 00:00
+[download]  58.0% of   16.52MiB at  611.41KiB/s ETA 00:11
+[download]  58.0% of   16.52MiB at    1.35MiB/s ETA 00:05
+[download]  58.1% of   16.52MiB at    1.84MiB/s ETA 00:03
+[download]  58.1% of   16.52MiB at    3.10MiB/s ETA 00:02
+[download]  58.2% of   16.52MiB at    4.85MiB/s ETA 00:01
+[download]  58.4% of   16.52MiB at    8.48MiB/s ETA 00:00
+[download]  58.8% of   16.52MiB at    9.71MiB/s ETA 00:00
+[download]  59.5% of   16.52MiB at   11.30MiB/s ETA 00:00
+[download]  61.0% of   16.52MiB at    9.30MiB/s ETA 00:00
+[download]  64.1% of   16.52MiB at   10.67MiB/s ETA 00:00
+[download]  70.1% of   16.52MiB at   11.33MiB/s ETA 00:00
+[download]  82.2% of   16.52MiB at   10.39MiB/s ETA 00:00
+[download] 100.0% of   16.52MiB at   10.29MiB/s ETA 00:00
+[download] 100% of   16.52MiB in 00:00:01 at 9.61MiB/s   
+[download] Destination: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).f251.webm
+
+[download]   0.0% of    3.10MiB at  647.27KiB/s ETA 00:04
+[download]   0.1% of    3.10MiB at  799.47KiB/s ETA 00:03
+[download]   0.2% of    3.10MiB at    1.43MiB/s ETA 00:02
+[download]   0.5% of    3.10MiB at    2.52MiB/s ETA 00:01
+[download]   1.0% of    3.10MiB at    4.14MiB/s ETA 00:00
+[download]   2.0% of    3.10MiB at    6.25MiB/s ETA 00:00
+[download]   4.0% of    3.10MiB at   11.42MiB/s ETA 00:00
+[download]   8.0% of    3.10MiB at   16.89MiB/s ETA 00:00
+[download]  16.1% of    3.10MiB at   14.30MiB/s ETA 00:00
+[download]  32.2% of    3.10MiB at   11.87MiB/s ETA 00:00
+[download]  64.4% of    3.10MiB at   11.69MiB/s ETA 00:00
+[download] 100.0% of    3.10MiB at   10.33MiB/s ETA 00:00
+[download] 100% of    3.10MiB in 00:00:00 at 6.23MiB/s   
+[Merger] Merging formats into "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm"
+
+[2025-07-21 15:49:36] Origineel bestand: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm
+[2025-07-21 15:49:36] Converteer naar MP3...
+[2025-07-21 15:49:36] Uitvoeren: .\tools\ffmpeg.exe -i "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm" -vn -b:a 320k "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp3"
+[2025-07-21 15:49:36] Input bestand: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm
+[2025-07-21 15:49:36] Input bestand bestaat: True
+[2025-07-21 15:49:36] Input bestand grootte: 20574425 bytes
+[2025-07-21 15:49:36] Checking streams in input file...
+[2025-07-21 15:49:36] Stream info:
+[2025-07-21 15:49:36] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+At least one output file must be specified
+
+[2025-07-21 15:49:49] FFmpeg volledige output:
+[2025-07-21 15:49:49] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+Stream mapping:
+  Stream #0:1 -> #0:0 (opus (native) -> mp3 (libmp3lame))
+Press [q] to stop, [?] for help
+Output #0, mp3, to 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp3':
+  Metadata:
+    TSSE            : Lavf62.1.103
+  Stream #0:0(eng): Audio: mp3, 48000 Hz, stereo, fltp, 320 kb/s (default)
+    Metadata:
+      encoder         : Lavc62.6.100 libmp3lame
+      DURATION        : 00:03:38.688000000
+size=     256KiB time=00:00:08.76 bitrate= 239.2kbits/s speed=17.4x elapsed=0:00:00.50    
+size=     512KiB time=00:00:17.81 bitrate= 235.4kbits/s speed=17.3x elapsed=0:00:01.02    
+size=    1024KiB time=00:00:26.45 bitrate= 317.1kbits/s speed=17.1x elapsed=0:00:01.55    
+size=    1280KiB time=00:00:37.87 bitrate= 276.8kbits/s speed=18.4x elapsed=0:00:02.05    
+size=    1792KiB time=00:00:48.05 bitrate= 305.5kbits/s speed=18.6x elapsed=0:00:02.57    
+size=    2048KiB time=00:00:58.83 bitrate= 285.2kbits/s speed=19.1x elapsed=0:00:03.08    
+size=    2560KiB time=00:01:08.55 bitrate= 305.9kbits/s speed=  19x elapsed=0:00:03.60    
+size=    2816KiB time=00:01:16.71 bitrate= 300.7kbits/s speed=18.6x elapsed=0:00:04.12    
+size=    3328KiB time=00:01:27.03 bitrate= 313.3kbits/s speed=18.8x elapsed=0:00:04.63    
+size=    3584KiB time=00:01:37.87 bitrate= 300.0kbits/s speed=  19x elapsed=0:00:05.14    
+size=    4096KiB time=00:01:49.18 bitrate= 307.3kbits/s speed=19.3x elapsed=0:00:05.66    
+size=    4608KiB time=00:02:00.24 bitrate= 313.9kbits/s speed=19.4x elapsed=0:00:06.18    
+size=    4864KiB time=00:02:08.93 bitrate= 309.0kbits/s speed=19.3x elapsed=0:00:06.69    
+size=    5120KiB time=00:02:16.06 bitrate= 308.3kbits/s speed=18.8x elapsed=0:00:07.21    
+size=    5632KiB time=00:02:26.26 bitrate= 315.4kbits/s speed=18.9x elapsed=0:00:07.72    
+size=    5888KiB time=00:02:34.51 bitrate= 312.2kbits/s speed=18.7x elapsed=0:00:08.24    
+size=    6144KiB time=00:02:42.53 bitrate= 309.7kbits/s speed=18.6x elapsed=0:00:08.75    
+size=    6400KiB time=00:02:50.16 bitrate= 308.1kbits/s speed=18.3x elapsed=0:00:09.28    
+size=    6912KiB time=00:02:58.42 bitrate= 317.4kbits/s speed=18.2x elapsed=0:00:09.80    
+size=    7168KiB time=00:03:05.98 bitrate= 315.7kbits/s speed=  18x elapsed=0:00:10.30    
+size=    7424KiB time=00:03:15.70 bitrate= 310.8kbits/s speed=18.1x elapsed=0:00:10.82    
+size=    7936KiB time=00:03:24.05 bitrate= 318.6kbits/s speed=  18x elapsed=0:00:11.33    
+size=    8192KiB time=00:03:34.83 bitrate= 312.4kbits/s speed=18.1x elapsed=0:00:11.85    
+[opus @ 00000225f55837c0] Error parsing Opus packet header.
+[out#0/mp3 @ 00000225f557e400] video:0KiB audio:8543KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.011476%
+size=    8544KiB time=00:03:38.67 bitrate= 320.1kbits/s speed=18.2x elapsed=0:00:12.03    
+
+[2025-07-21 15:49:49] MP3 conversie voltooid: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp3 (8749484 bytes)
+[2025-07-21 15:49:49] Converteer naar MP4...
+[2025-07-21 15:49:49] Uitvoeren: .\tools\ffmpeg.exe -i "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm" -c copy "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp4"
+[2025-07-21 15:49:49] Input bestand: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm
+[2025-07-21 15:49:49] Input bestand bestaat: True
+[2025-07-21 15:49:49] Input bestand grootte: 20574425 bytes
+[2025-07-21 15:49:49] Checking streams in input file...
+[2025-07-21 15:49:52] Stream info:
+[2025-07-21 15:49:52] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+At least one output file must be specified
+
+[2025-07-21 15:49:53] FFmpeg volledige output:
+[2025-07-21 15:49:53] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+[mp4 @ 000001de62b95dc0] track 1: codec frame size is not set
+Output #0, mp4, to 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp4':
+  Metadata:
+    encoder         : Lavf62.1.103
+  Stream #0:0(eng): Video: vp9 (Profile 0) (vp09 / 0x39307076), yuv420p(tv), 1080x1080 [SAR 1:1 DAR 1:1], q=2-31, 25 fps, 25 tbr, 16k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus (Opus / 0x7375704F), 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+Press [q] to stop, [?] for help
+[opus @ 000001de62b937c0] Error parsing Opus packet header.
+[out#0/mp4 @ 000001de62b8e3c0] video:16883KiB audio:3101KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.541772%
+frame= 5466 fps=0.0 q=-1.0 Lsize=   20092KiB time=00:03:38.64 bitrate= 752.8kbits/s speed= 786x elapsed=0:00:00.27    
+
+[2025-07-21 15:49:53] MP4 conversie voltooid: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp4 (20573727 bytes)
+[2025-07-21 15:49:53] Converteer naar WAV...
+[2025-07-21 15:49:53] Uitvoeren: .\tools\ffmpeg.exe -i "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm" -vn -ar 44100 -ac 2 "C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).wav"
+[2025-07-21 15:49:53] Input bestand: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm
+[2025-07-21 15:49:53] Input bestand bestaat: True
+[2025-07-21 15:49:53] Input bestand grootte: 20574425 bytes
+[2025-07-21 15:49:53] Checking streams in input file...
+[2025-07-21 15:49:54] Stream info:
+[2025-07-21 15:49:54] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+At least one output file must be specified
+
+[2025-07-21 15:49:57] FFmpeg volledige output:
+[2025-07-21 15:49:57] ffmpeg version 2025-07-17-git-bc8d06d541-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.1.0 (Rev6, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      60.  4.101 / 60.  4.101
+  libavcodec     62.  6.100 / 62.  6.100
+  libavformat    62.  1.103 / 62.  1.103
+  libavdevice    62.  0.100 / 62.  0.100
+  libavfilter    11.  2.100 / 11.  2.100
+  libswscale      9.  0.100 /  9.  0.100
+  libswresample   6.  0.100 /  6.  0.100
+Input #0, matroska,webm, from 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).webm':
+  Metadata:
+    ENCODER         : Lavf62.1.103
+  Duration: 00:03:38.69, start: 0.000000, bitrate: 752 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv), 1080x1080, SAR 1:1 DAR 1:1, 25 fps, 25 tbr, 1k tbn (default)
+    Metadata:
+      DURATION        : 00:03:38.640000000
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+    Metadata:
+      DURATION        : 00:03:38.688000000
+Stream mapping:
+  Stream #0:1 -> #0:0 (opus (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to 'C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).wav':
+  Metadata:
+    ISFT            : Lavf62.1.103
+  Stream #0:0(eng): Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s (default)
+    Metadata:
+      encoder         : Lavc62.6.100 pcm_s16le
+      DURATION        : 00:03:38.688000000
+size=    8704KiB time=00:00:51.38 bitrate=1387.8kbits/s speed=99.4x elapsed=0:00:00.51    
+size=   19456KiB time=00:01:53.24 bitrate=1407.5kbits/s speed= 109x elapsed=0:00:01.04    
+size=   28416KiB time=00:02:42.16 bitrate=1435.5kbits/s speed= 105x elapsed=0:00:01.55    
+[opus @ 000001fc8d4c4680] Error parsing Opus packet header.
+[out#0/wav @ 000001fc8d4c52c0] video:0KiB audio:37669KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000202%
+size=   37669KiB time=00:03:38.67 bitrate=1411.2kbits/s speed= 105x elapsed=0:00:02.08    
+
+[2025-07-21 15:49:57] WAV conversie voltooid: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).wav (38572878 bytes)
+[2025-07-21 15:49:57] Origineel bestand verwijderd: February - Whateva Da Weatha (feat. Mystro, Gadget).f248.webm
+[2025-07-21 15:49:57] Origineel bestand verwijderd: February - Whateva Da Weatha (feat. Mystro, Gadget).f251.webm
+[2025-07-21 15:49:57] Origineel bestand verwijderd: February - Whateva Da Weatha (feat. Mystro, Gadget).webm
+[2025-07-21 15:49:57] Opening Windows Explorer met download locatie...
+[2025-07-21 15:49:57] Selecteer bestand: C:\qqqq\February - Whateva Da Weatha (feat. Mystro, Gadget).mp3
