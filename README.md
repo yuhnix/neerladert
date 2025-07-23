@@ -11,6 +11,7 @@ Pirate Cavia biedt een intuïtieve grafische interface voor het downloaden van v
 - **Meerdere formaten**: MP3 (met bitrate opties), MP4, WAV
 - **Kwaliteitsopties**: CBR bitrates (128k-320k) en VBR opties (V0, V2, V4)
 - **Playlist ondersteuning**: Download complete playlists in één keer
+- **Batch downloads**: Upload een tekstbestand met meerdere URLs voor bulk downloads
 - **Bestandsbeheer**: Configureerbare opslaglocaties, optionele bestandsopruiming
 - **Gebruikerservaring**: Voortgang tracking, Windows Explorer integratie
 - **Automatische updates**: Ingebouwde update functionaliteit voor yt-dlp en FFmpeg via Help menu
@@ -81,10 +82,33 @@ powershell.exe -ExecutionPolicy Bypass -File GUI-App.ps1 -log
 ### Download proces
 
 1. **URL invoeren**: Plak de URL van de video/playlist in het URL veld
+   - **Alternatief**: Selecteer "Gebruik bestand met URLs" voor batch downloads
 2. **Formaat selecteren**: Kies uit MP3, MP4, of WAV
 3. **Kwaliteit instellen**: Selecteer gewenste bitrate of kwaliteitsinstelling
 4. **Opslaglocatie**: Kies waar de bestanden opgeslagen moeten worden
 5. **Download starten**: Klik op de download knop en volg de voortgang
+
+### Batch Downloads
+
+Voor het downloaden van meerdere URLs tegelijk:
+
+1. **Maak een tekstbestand** (.txt) met URLs:
+   ```
+   https://www.youtube.com/watch?v=dQw4w9WgXcQ
+   https://www.youtube.com/watch?v=oHg5SJYRHA0
+   https://vimeo.com/12345678
+   ```
+
+2. **Selecteer batch modus**: Vink "Gebruik bestand met URLs" aan
+3. **Kies bestand**: Klik "Bladeren" en selecteer je tekstbestand
+4. **Configureer opties**: Stel formaat en kwaliteit in zoals gewoonlijk
+5. **Start download**: De applicatie downloadt alle URLs in het bestand
+
+**Tips voor batch files:**
+- Eén URL per regel
+- Ondersteunt alle websites die yt-dlp ondersteunt
+- Kan gecombineerd worden met playlist opties
+- Lege regels worden genegeerd
 
 ### Download strategie
 
