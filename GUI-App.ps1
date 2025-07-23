@@ -369,7 +369,7 @@ $form.Controls.Add($label)
 $urlTextBox = New-Object System.Windows.Forms.TextBox
 $urlTextBox.Location = New-Object System.Drawing.Point(20, 75)
 $urlTextBox.Size = New-Object System.Drawing.Size(460, 30)
-$urlTextBox.PlaceholderText = "Voer URL in..."
+#$urlTextBox.PlaceholderText = "Voer URL in..."
 $form.Controls.Add($urlTextBox)
 
 # Create general options group box (renamed from format)
