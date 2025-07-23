@@ -79,38 +79,56 @@ $SourcePath = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 Write-Host "Kopiëren van bestanden van $SourcePath naar $InstallPath..." -ForegroundColor Yellow
 
-# Files and directories to copy
-$ItemsToCopy = @(
-    "GUI-App.ps1",
-    "GUI-App.exe", 
-    "run-gui.cmd",
-    "icons",
-    "tools",
-    "CLAUDE.md",
-    "CHANGELOG.md"
+# Items to exclude from copying (installer and temp files)
+$ItemsToExclude = @(
+    "install.ps1",
+    ".git",
+    ".gitignore",
+    "*.tmp",
+    "*.log"
 )
 
-# Copy files and directories
-foreach ($item in $ItemsToCopy) {
-    $sourcePath = Join-Path $SourcePath $item
-    $destPath = Join-Path $InstallPath $item
+# Get all items in source directory
+$AllItems = Get-ChildItem -Path $SourcePath -Force | Where-Object {
+    $item = $_
+    $shouldExclude = $false
     
-    if (Test-Path $sourcePath) {
-        try {
-            if (Test-Path $sourcePath -PathType Container) {
-                # Directory
-                Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
-                Write-Host "Gekopieerd directory: $item" -ForegroundColor Green
-            } else {
-                # File
-                Copy-Item -Path $sourcePath -Destination $destPath -Force
-                Write-Host "Gekopieerd bestand: $item" -ForegroundColor Green
+    foreach ($exclude in $ItemsToExclude) {
+        if ($exclude.Contains("*")) {
+            # Wildcard pattern
+            if ($item.Name -like $exclude) {
+                $shouldExclude = $true
+                break
             }
-        } catch {
-            Write-Host "Fout bij kopiëren van $item`: $($_.Exception.Message)" -ForegroundColor Red
+        } else {
+            # Exact match
+            if ($item.Name -eq $exclude) {
+                $shouldExclude = $true
+                break
+            }
         }
-    } else {
-        Write-Host "Bestand/directory niet gevonden: $item" -ForegroundColor Yellow
+    }
+    
+    return -not $shouldExclude
+}
+
+# Copy all files and directories
+foreach ($item in $AllItems) {
+    $sourcePath = $item.FullName
+    $destPath = Join-Path $InstallPath $item.Name
+    
+    try {
+        if ($item.PSIsContainer) {
+            # Directory
+            Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
+            Write-Host "Gekopieerd directory: $($item.Name)" -ForegroundColor Green
+        } else {
+            # File
+            Copy-Item -Path $sourcePath -Destination $destPath -Force
+            Write-Host "Gekopieerd bestand: $($item.Name)" -ForegroundColor Green
+        }
+    } catch {
+        Write-Host "Fout bij kopiëren van $($item.Name)`: $($_.Exception.Message)" -ForegroundColor Red
     }
 }
 

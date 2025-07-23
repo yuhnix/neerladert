@@ -125,6 +125,9 @@ $newItem.Add_Click({
     $mp4CheckBox.Checked = $false
     $wavCheckBox.Checked = $false
     $playlistCheckBox.Checked = $false
+    $cookieCheckBox.Checked = $false
+    $browserDropdown.SelectedIndex = 0
+    $browserDropdown.Enabled = $false
     $logTextBox.Text = ""
     $statusLabel.Text = "Gereed"
 })
@@ -531,6 +534,28 @@ $showFilesCheckBox.Text = "Bestanden tonen wanneer klaar"
 $showFilesCheckBox.Checked = $true
 $advancedGroupBox.Controls.Add($showFilesCheckBox)
 
+# Add checkbox for using cookies
+$cookieCheckBox = New-Object System.Windows.Forms.CheckBox
+$cookieCheckBox.Location = New-Object System.Drawing.Point(270, 30)
+$cookieCheckBox.Size = New-Object System.Drawing.Size(120, 20)
+$cookieCheckBox.Text = "Cookies gebruiken"
+$cookieCheckBox.Checked = $false
+$advancedGroupBox.Controls.Add($cookieCheckBox)
+
+# Add browser dropdown for cookies
+$browserDropdown = New-Object System.Windows.Forms.ComboBox
+$browserDropdown.Location = New-Object System.Drawing.Point(270, 50)
+$browserDropdown.Size = New-Object System.Drawing.Size(100, 20)
+[void]$browserDropdown.Items.AddRange(@("Firefox", "Chrome", "Edge"))
+$browserDropdown.SelectedIndex = 0  # Default to Firefox
+$browserDropdown.Enabled = $false  # Initially disabled
+$advancedGroupBox.Controls.Add($browserDropdown)
+
+# Enable/disable browser dropdown based on cookie checkbox
+$cookieCheckBox.Add_CheckedChanged({
+    $browserDropdown.Enabled = $cookieCheckBox.Checked
+})
+
 # Add checkbox for enabling logging to file
 $enableLoggingCheckBox = New-Object System.Windows.Forms.CheckBox
 $enableLoggingCheckBox.Location = New-Object System.Drawing.Point(20, 110)
@@ -584,6 +609,16 @@ $goButton.Add_Click({
         return
     }
     
+    # Function to add cookie parameters to yt-dlp command
+    function Add-CookieParameters {
+        param([string]$command)
+        if ($cookieCheckBox.Checked) {
+            $browser = $browserDropdown.SelectedItem.ToString().ToLower()
+            $command += " --cookies-from-browser $browser"
+        }
+        return $command
+    }
+    
     # Get the URL or batch file
     if ($batchFileCheckBox.Checked) {
         $batchFile = $batchFileTextBox.Text
@@ -602,6 +637,7 @@ $goButton.Add_Click({
     if ($selectedFormats.Count -gt 1) {
         # Multiple formats selected - download once with keep original, then convert
         $baseCommand = ".\tools\yt-dlp.exe -k --ffmpeg-location .\tools\ffmpeg.exe"
+        $baseCommand = Add-CookieParameters -command $baseCommand
         if ($playlistCheckBox.Checked) { $baseCommand += " --yes-playlist" }
         if ($batchFileCheckBox.Checked) {
             $baseCommand += ' -a "' + $batchFile + '"'
@@ -638,6 +674,7 @@ $goButton.Add_Click({
         if ($mp3CheckBox.Checked) {
             $selectedBitrate = $bitrateDropdown.SelectedItem
             $mp3Command = ".\tools\yt-dlp.exe -x --audio-format mp3 --ffmpeg-location .\tools\ffmpeg.exe"
+            $mp3Command = Add-CookieParameters -command $mp3Command
             
             # Handle bitrate settings
             if ($selectedBitrate -like "*VBR*") {
@@ -663,6 +700,7 @@ $goButton.Add_Click({
         
         if ($mp4CheckBox.Checked) {
             $mp4Command = ".\tools\yt-dlp.exe -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
+            $mp4Command = Add-CookieParameters -command $mp4Command
             if ($playlistCheckBox.Checked) { $mp4Command += " --yes-playlist" }
             if ($batchFileCheckBox.Checked) {
                 $mp4Command += ' -a "' + $batchFile + '"'
@@ -675,6 +713,7 @@ $goButton.Add_Click({
         
         if ($wavCheckBox.Checked) {
             $wavCommand = ".\tools\yt-dlp.exe -x --audio-format wav --audio-quality 0 --ffmpeg-location .\tools\ffmpeg.exe"
+            $wavCommand = Add-CookieParameters -command $wavCommand
             if ($playlistCheckBox.Checked) { $wavCommand += " --yes-playlist" }
             if ($batchFileCheckBox.Checked) {
                 $wavCommand += ' -a "' + $batchFile + '"'
@@ -696,6 +735,10 @@ $goButton.Add_Click({
     Write-Log "Geselecteerde formaten: $($selectedFormats -join ', ')"
     Write-Log "MP3 bitrate: $($bitrateDropdown.SelectedItem)"
     Write-Log "Playlist download: $($playlistCheckBox.Checked)"
+    Write-Log "Cookies gebruiken: $($cookieCheckBox.Checked)"
+    if ($cookieCheckBox.Checked) {
+        Write-Log "Browser voor cookies: $($browserDropdown.SelectedItem)"
+    }
     Write-Log "Origineel behouden: $($keepOriginalCheckBox.Checked)"
     Write-Log "Bestanden tonen: $($showFilesCheckBox.Checked)"
     Write-Log "Opslaglocatie: $global:savePath"
