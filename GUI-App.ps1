@@ -1,20 +1,31 @@
+# Parse command line parameters
+param(
+    [switch]$log = $false
+)
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# Initialize log file and default save path
-$global:logFile = ".\logs\pirate-cavia-$(Get-Date -Format 'yyyy-MM-dd-HHmm').log"
+# Initialize logging variables
+$global:enableLogging = $log
+$global:logFile = $null
 $global:logDir = ".\logs"
 $global:savePath = "$(Get-Location)\Downloads"
 
 # Create directories if they don't exist
-if (!(Test-Path $global:logDir)) {
+if ($global:enableLogging -and !(Test-Path $global:logDir)) {
     New-Item -ItemType Directory -Path $global:logDir -Force
 }
 if (!(Test-Path $global:savePath)) {
     New-Item -ItemType Directory -Path $global:savePath -Force
 }
 
-# Function to log to both textbox and file
+# Initialize log file only if logging is enabled
+if ($global:enableLogging) {
+    $global:logFile = ".\logs\pirate-cavia-$(Get-Date -Format 'yyyy-MM-dd-HHmm').log"
+}
+
+# Function to log to both textbox and file (conditionally)
 function Write-Log {
     param([string]$message)
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
@@ -24,8 +35,18 @@ function Write-Log {
     $logTextBox.AppendText("$message`r`n")
     $logTextBox.ScrollToCaret()
     
-    # Write to file
-    Add-Content -Path $global:logFile -Value $logEntry -Encoding UTF8
+    # Write to file only if logging is enabled (either by parameter or checkbox)
+    $loggingEnabled = $global:enableLogging -or $enableLoggingCheckBox.Checked
+    if ($loggingEnabled) {
+        # Create log file if it doesn't exist and logging is now enabled
+        if (-not $global:logFile) {
+            if (!(Test-Path $global:logDir)) {
+                New-Item -ItemType Directory -Path $global:logDir -Force
+            }
+            $global:logFile = ".\logs\pirate-cavia-$(Get-Date -Format 'yyyy-MM-dd-HHmm').log"
+        }
+        Add-Content -Path $global:logFile -Value $logEntry -Encoding UTF8
+    }
 }
 
 # Create the main form
@@ -48,7 +69,7 @@ $form.Controls.Add($label)
 $urlTextBox = New-Object System.Windows.Forms.TextBox
 $urlTextBox.Location = New-Object System.Drawing.Point(20, 60)
 $urlTextBox.Size = New-Object System.Drawing.Size(460, 30)
-$urlTextBox.PlaceholderText = "Voer URL in..."
+#$urlTextBox.PlaceholderText = "Voer URL in..."
 $form.Controls.Add($urlTextBox)
 
 # Create format option group box
@@ -116,7 +137,7 @@ $formatGroupBox.Controls.Add($savePathButton)
 # Create advanced settings group box
 $advancedGroupBox = New-Object System.Windows.Forms.GroupBox
 $advancedGroupBox.Location = New-Object System.Drawing.Point(20, 230)
-$advancedGroupBox.Size = New-Object System.Drawing.Size(460, 140)
+$advancedGroupBox.Size = New-Object System.Drawing.Size(460, 160)
 $advancedGroupBox.Text = "Geavanceerde instellingen"
 $form.Controls.Add($advancedGroupBox)
 
@@ -150,9 +171,17 @@ $showFilesCheckBox.Text = "Bestanden tonen wanneer klaar"
 $showFilesCheckBox.Checked = $true
 $advancedGroupBox.Controls.Add($showFilesCheckBox)
 
+# Add checkbox for enabling logging to file
+$enableLoggingCheckBox = New-Object System.Windows.Forms.CheckBox
+$enableLoggingCheckBox.Location = New-Object System.Drawing.Point(20, 110)
+$enableLoggingCheckBox.Size = New-Object System.Drawing.Size(240, 20)
+$enableLoggingCheckBox.Text = "Loggen naar bestand"
+$enableLoggingCheckBox.Checked = $global:enableLogging  # Set based on command line parameter
+$advancedGroupBox.Controls.Add($enableLoggingCheckBox)
+
 # Create a log textbox - moved down to make room for advanced settings
 $logTextBox = New-Object System.Windows.Forms.RichTextBox
-$logTextBox.Location = New-Object System.Drawing.Point(20, 380)
+$logTextBox.Location = New-Object System.Drawing.Point(20, 400)
 $logTextBox.Size = New-Object System.Drawing.Size(460, 100)
 $logTextBox.ReadOnly = $true
 $logTextBox.BackColor = [System.Drawing.Color]::White
@@ -201,7 +230,7 @@ $goButton.Add_Click({
     
     if ($selectedFormats.Count -gt 1) {
         # Multiple formats selected - download once with keep original, then convert
-        $baseCommand = ".\ytdl\yt-dlp.exe -k --ffmpeg-location .\tools\ffmpeg.exe"
+        $baseCommand = ".\tools\yt-dlp.exe -k --ffmpeg-location .\tools\ffmpeg.exe"
         if ($playlistCheckBox.Checked) { $baseCommand += " --yes-playlist" }
         $baseCommand += ' "' + $url + '"'
         $downloadCommands += @{ Format = "BASE"; Command = $baseCommand }
@@ -233,7 +262,7 @@ $goButton.Add_Click({
         # Single format selected - use direct download
         if ($mp3CheckBox.Checked) {
             $selectedBitrate = $bitrateDropdown.SelectedItem
-            $mp3Command = ".\ytdl\yt-dlp.exe -x --audio-format mp3 --ffmpeg-location .\tools\ffmpeg.exe"
+            $mp3Command = ".\tools\yt-dlp.exe -x --audio-format mp3 --ffmpeg-location .\tools\ffmpeg.exe"
             
             # Handle bitrate settings
             if ($selectedBitrate -like "*VBR*") {
@@ -254,14 +283,14 @@ $goButton.Add_Click({
         }
         
         if ($mp4CheckBox.Checked) {
-            $mp4Command = ".\ytdl\yt-dlp.exe -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
+            $mp4Command = ".\tools\yt-dlp.exe -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
             if ($playlistCheckBox.Checked) { $mp4Command += " --yes-playlist" }
             $mp4Command += ' "' + $url + '"'
             $downloadCommands += @{ Format = "MP4"; Command = $mp4Command }
         }
         
         if ($wavCheckBox.Checked) {
-            $wavCommand = ".\ytdl\yt-dlp.exe -x --audio-format wav --audio-quality 0 --ffmpeg-location .\tools\ffmpeg.exe"
+            $wavCommand = ".\tools\yt-dlp.exe -x --audio-format wav --audio-quality 0 --ffmpeg-location .\tools\ffmpeg.exe"
             if ($playlistCheckBox.Checked) { $wavCommand += " --yes-playlist" }
             $wavCommand += ' "' + $url + '"'
             $downloadCommands += @{ Format = "WAV"; Command = $wavCommand }
@@ -282,7 +311,12 @@ $goButton.Add_Click({
     Write-Log "Origineel behouden: $($keepOriginalCheckBox.Checked)"
     Write-Log "Bestanden tonen: $($showFilesCheckBox.Checked)"
     Write-Log "Opslaglocatie: $global:savePath"
-    Write-Log "Logbestand: $global:logFile"
+    $loggingEnabled = $global:enableLogging -or $enableLoggingCheckBox.Checked
+    if ($loggingEnabled) {
+        Write-Log "Logbestand: $global:logFile"
+    } else {
+        Write-Log "Logging: uitgeschakeld"
+    }
     Write-Log "=================================="
     
     # Execute downloads and conversions
@@ -511,12 +545,157 @@ $fileMenu.DropDownItems.Add($exitItem)
 $helpMenu = New-Object System.Windows.Forms.ToolStripMenuItem
 $helpMenu.Text = "Help"
 
+# Update yt-dlp menu item
+$updateYtDlpItem = New-Object System.Windows.Forms.ToolStripMenuItem
+$updateYtDlpItem.Text = "Update yt-dlp"
+$updateYtDlpItem.Add_Click({
+    try {
+        $statusLabel.Text = "yt-dlp updaten..."
+        $logTextBox.Text = ""
+        Write-Log "=== yt-dlp Update Gestart ==="
+        
+        # Pad naar het update script en tools directory
+        $updateScript = ".\tools\updaters\update-ytdlp.ps1"
+        $ytdlPath = ".\tools"
+        
+        if (Test-Path $updateScript) {
+            Write-Log "Update script gevonden, starten van update proces..."
+            
+            # Voer het update script uit in de achtergrond
+            $job = Start-Job -ScriptBlock {
+                param($script, $path)
+                & powershell.exe -ExecutionPolicy Bypass -File $script -DownloadPath $path -Verbose
+            } -ArgumentList $updateScript, $ytdlPath
+            
+            # Wacht op voltooiing en toon progress
+            do {
+                Start-Sleep -Milliseconds 500
+                $form.Refresh()
+                [System.Windows.Forms.Application]::DoEvents()
+            } while ($job.State -eq 'Running')
+            
+            $result = Receive-Job $job
+            Remove-Job $job
+            
+            # Toon resultaat
+            if ($result) {
+                Write-Log ($result | Out-String)
+            }
+            
+            # Test of yt-dlp werkt
+            $ytdlExe = Join-Path $ytdlPath "yt-dlp.exe"
+            if (Test-Path $ytdlExe) {
+                try {
+                    $version = & $ytdlExe --version 2>$null
+                    if ($version) {
+                        Write-Log "✅ yt-dlp update succesvol! Versie: $version"
+                        $statusLabel.Text = "yt-dlp update voltooid"
+                        [System.Windows.Forms.MessageBox]::Show("yt-dlp update succesvol voltooid!`nVersie: $version", "Update Succesvol", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                    } else {
+                        throw "Versie check mislukt"
+                    }
+                } catch {
+                    Write-Log "⚠️ yt-dlp gedownload maar versie check mislukt: $($_.Exception.Message)"
+                    $statusLabel.Text = "yt-dlp update mogelijk mislukt"
+                    [System.Windows.Forms.MessageBox]::Show("yt-dlp update mogelijk mislukt.`nControleer de logs voor meer details.", "Update Waarschuwing", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+                }
+            } else {
+                Write-Log "❌ yt-dlp executable niet gevonden na update"
+                $statusLabel.Text = "yt-dlp update mislukt"
+                [System.Windows.Forms.MessageBox]::Show("yt-dlp update mislukt.`nExecutable niet gevonden.", "Update Mislukt", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
+        } else {
+            Write-Log "❌ Update script niet gevonden: $updateScript"
+            $statusLabel.Text = "Update script niet gevonden"
+            [System.Windows.Forms.MessageBox]::Show("Update script niet gevonden:`n$updateScript", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+        }
+    } catch {
+        Write-Log "❌ Fout bij updaten van yt-dlp: $($_.Exception.Message)"
+        $statusLabel.Text = "yt-dlp update fout"
+        [System.Windows.Forms.MessageBox]::Show("Fout bij updaten van yt-dlp:`n$($_.Exception.Message)", "Update Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    }
+})
+
+# Update FFmpeg menu item  
+$updateFFmpegItem = New-Object System.Windows.Forms.ToolStripMenuItem
+$updateFFmpegItem.Text = "Update FFmpeg"
+$updateFFmpegItem.Add_Click({
+    try {
+        $statusLabel.Text = "FFmpeg updaten..."
+        $logTextBox.Text = ""
+        Write-Log "=== FFmpeg Update Gestart ==="
+        
+        # Pad naar het update script en tools directory
+        $updateScript = ".\tools\updaters\update-ffmpeg.ps1"
+        $toolsPath = ".\tools"
+        
+        if (Test-Path $updateScript) {
+            Write-Log "Update script gevonden, starten van update proces..."
+            
+            # Voer het update script uit in de achtergrond
+            $job = Start-Job -ScriptBlock {
+                param($script, $path)
+                & powershell.exe -ExecutionPolicy Bypass -File $script -DownloadPath $path -Verbose
+            } -ArgumentList $updateScript, $toolsPath
+            
+            # Wacht op voltooiing en toon progress
+            do {
+                Start-Sleep -Milliseconds 500
+                $form.Refresh()
+                [System.Windows.Forms.Application]::DoEvents()
+            } while ($job.State -eq 'Running')
+            
+            $result = Receive-Job $job
+            Remove-Job $job
+            
+            # Toon resultaat
+            if ($result) {
+                Write-Log ($result | Out-String)
+            }
+            
+            # Test of FFmpeg werkt
+            $ffmpegExe = Join-Path $toolsPath "ffmpeg.exe"
+            if (Test-Path $ffmpegExe) {
+                try {
+                    $versionOutput = & $ffmpegExe -version 2>$null | Select-Object -First 1
+                    if ($versionOutput -and $versionOutput -match "ffmpeg version") {
+                        Write-Log "✅ FFmpeg update succesvol! $versionOutput"
+                        $statusLabel.Text = "FFmpeg update voltooid"
+                        [System.Windows.Forms.MessageBox]::Show("FFmpeg update succesvol voltooid!`n$versionOutput", "Update Succesvol", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                    } else {
+                        throw "Versie check mislukt"
+                    }
+                } catch {
+                    Write-Log "⚠️ FFmpeg gedownload maar versie check mislukt: $($_.Exception.Message)"
+                    $statusLabel.Text = "FFmpeg update mogelijk mislukt"
+                    [System.Windows.Forms.MessageBox]::Show("FFmpeg update mogelijk mislukt.`nControleer de logs voor meer details.", "Update Waarschuwing", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+                }
+            } else {
+                Write-Log "❌ FFmpeg executable niet gevonden na update"
+                $statusLabel.Text = "FFmpeg update mislukt"
+                [System.Windows.Forms.MessageBox]::Show("FFmpeg update mislukt.`nExecutable niet gevonden.", "Update Mislukt", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
+        } else {
+            Write-Log "❌ Update script niet gevonden: $updateScript"
+            $statusLabel.Text = "Update script niet gevonden"
+            [System.Windows.Forms.MessageBox]::Show("Update script niet gevonden:`n$updateScript", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+        }
+    } catch {
+        Write-Log "❌ Fout bij updaten van FFmpeg: $($_.Exception.Message)"
+        $statusLabel.Text = "FFmpeg update fout"
+        [System.Windows.Forms.MessageBox]::Show("Fout bij updaten van FFmpeg:`n$($_.Exception.Message)", "Update Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    }
+})
+
 $aboutItem = New-Object System.Windows.Forms.ToolStripMenuItem
 $aboutItem.Text = "Over"
 $aboutItem.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Pirate Cavia, HAR HAR `nVersie 1.0", "Over")
 })
 
+$helpMenu.DropDownItems.Add($updateYtDlpItem)
+$helpMenu.DropDownItems.Add($updateFFmpegItem)
+$helpMenu.DropDownItems.Add("-") # Separator
 $helpMenu.DropDownItems.Add($aboutItem)
 
 $menuBar.Items.Add($fileMenu)

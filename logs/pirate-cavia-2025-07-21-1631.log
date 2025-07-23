@@ -1,0 +1,36 @@
+[2025-07-21 16:32:09] === NIEUWE DOWNLOADSESSIE GESTART ===
+[2025-07-21 16:32:09] URL: https://www.youtube.com/watch?v=kIy7oathtVM
+[2025-07-21 16:32:09] Geselecteerde formaten: WAV
+[2025-07-21 16:32:09] MP3 bitrate: 320k
+[2025-07-21 16:32:09] Playlist download: False
+[2025-07-21 16:32:09] Origineel behouden: False
+[2025-07-21 16:32:09] Bestanden tonen: True
+[2025-07-21 16:32:09] Opslaglocatie: C:\pwsh-neerlader\Downloads
+[2025-07-21 16:32:09] Logbestand: .\logs\pirate-cavia-2025-07-21-1631.log
+[2025-07-21 16:32:09] ==================================
+[2025-07-21 16:32:10] Start download in WAV formaat...
+[2025-07-21 16:32:10] Uitvoeren: .\ytdl\yt-dlp.exe -x --audio-format wav --audio-quality 0 --ffmpeg-location .\tools\ffmpeg.exe "https://www.youtube.com/watch?v=kIy7oathtVM" -o "C:\pwsh-neerlader\Downloads/%(title)s.%(ext)s"
+[2025-07-21 16:33:44] [youtube] Extracting URL: https://www.youtube.com/watch?v=kIy7oathtVM
+[youtube] kIy7oathtVM: Downloading webpage
+[youtube] kIy7oathtVM: Downloading tv client config
+[youtube] kIy7oathtVM: Downloading tv player API JSON
+[youtube] kIy7oathtVM: Downloading ios player API JSON
+[youtube] kIy7oathtVM: Downloading m3u8 information
+[info] kIy7oathtVM: Downloading 1 format(s): 251
+[download] Destination: C:\pwsh-neerlader\Downloads\170-250 bpm breakcore amen break.webm
+
+[download]   0.6% of  163.27KiB at  491.42KiB/s ETA 00:00
+[download]   1.8% of  163.27KiB at  590.41KiB/s ETA 00:00
+[download]   4.3% of  163.27KiB at    1.12MiB/s ETA 00:00
+[download]   9.2% of  163.27KiB at    2.06MiB/s ETA 00:00
+[download]  19.0% of  163.27KiB at    2.15MiB/s ETA 00:00
+[download]  38.6% of  163.27KiB at    2.77MiB/s ETA 00:00
+[download]  77.8% of  163.27KiB at    3.44MiB/s ETA 00:00
+[download] 100.0% of  163.27KiB at    2.82MiB/s ETA 00:00
+[download] 100% of  163.27KiB in 00:00:00 at 640.46KiB/s 
+[ExtractAudio] Destination: C:\pwsh-neerlader\Downloads\170-250 bpm breakcore amen break.wav
+Deleting original file C:\pwsh-neerlader\Downloads\170-250 bpm breakcore amen break.webm (pass -k to keep)
+
+[2025-07-21 16:33:44] WAV download voltooid.
+[2025-07-21 16:33:44] Opening Windows Explorer met download locatie...
+[2025-07-21 16:33:45] Selecteer bestand: C:\pwsh-neerlader\Downloads\170-250 bpm breakcore amen break.wav
