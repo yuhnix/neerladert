@@ -390,7 +390,7 @@ $generalGroupBox.Controls.Add($batchFileCheckBox)
 $batchFileTextBox = New-Object System.Windows.Forms.TextBox
 $batchFileTextBox.Location = New-Object System.Drawing.Point(20, 55)
 $batchFileTextBox.Size = New-Object System.Drawing.Size(300, 25)
-$batchFileTextBox.PlaceholderText = "Selecteer bestand..."
+#$batchFileTextBox.PlaceholderText = "Selecteer bestand..."
 $batchFileTextBox.Enabled = $false
 $generalGroupBox.Controls.Add($batchFileTextBox)
 
