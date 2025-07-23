@@ -28,10 +28,84 @@ function Write-Log {
     Add-Content -Path $global:logFile -Value $logEntry -Encoding UTF8
 }
 
+# Startup update check
+function Show-StartupUpdateDialog {
+    $updateForm = New-Object System.Windows.Forms.Form
+    $updateForm.Text = "Update Check"
+    $updateForm.Size = New-Object System.Drawing.Size(400, 200)
+    $updateForm.StartPosition = "CenterScreen"
+    $updateForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+    $updateForm.MaximizeBox = $false
+    $updateForm.MinimizeBox = $false
+    
+    # Question label
+    $questionLabel = New-Object System.Windows.Forms.Label
+    $questionLabel.Location = New-Object System.Drawing.Point(20, 20)
+    $questionLabel.Size = New-Object System.Drawing.Size(340, 40)
+    $questionLabel.Text = "Wil je controleren of er updates voor yt-dlp en/of FFmpeg zijn?"
+    $questionLabel.TextAlign = [System.Drawing.ContentAlignment]::TopCenter
+    $updateForm.Controls.Add($questionLabel)
+    
+    # yt-dlp checkbox
+    $ytdlpCheckBox = New-Object System.Windows.Forms.CheckBox
+    $ytdlpCheckBox.Location = New-Object System.Drawing.Point(60, 80)
+    $ytdlpCheckBox.Size = New-Object System.Drawing.Size(120, 20)
+    $ytdlpCheckBox.Text = "yt-dlp updaten"
+    $ytdlpCheckBox.Checked = $true
+    $updateForm.Controls.Add($ytdlpCheckBox)
+    
+    # FFmpeg checkbox
+    $ffmpegCheckBox = New-Object System.Windows.Forms.CheckBox
+    $ffmpegCheckBox.Location = New-Object System.Drawing.Point(200, 80)
+    $ffmpegCheckBox.Size = New-Object System.Drawing.Size(120, 20)
+    $ffmpegCheckBox.Text = "FFmpeg updaten"
+    $ffmpegCheckBox.Checked = $true
+    $updateForm.Controls.Add($ffmpegCheckBox)
+    
+    # OK button
+    $okButton = New-Object System.Windows.Forms.Button
+    $okButton.Location = New-Object System.Drawing.Point(120, 120)
+    $okButton.Size = New-Object System.Drawing.Size(75, 25)
+    $okButton.Text = "OK"
+    $okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+    $updateForm.Controls.Add($okButton)
+    
+    # Cancel button
+    $cancelButton = New-Object System.Windows.Forms.Button
+    $cancelButton.Location = New-Object System.Drawing.Point(210, 120)
+    $cancelButton.Size = New-Object System.Drawing.Size(75, 25)
+    $cancelButton.Text = "Overslaan"
+    $cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+    $updateForm.Controls.Add($cancelButton)
+    
+    $updateForm.AcceptButton = $okButton
+    $updateForm.CancelButton = $cancelButton
+    
+    $result = $updateForm.ShowDialog()
+    
+    if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
+        $updateResults = @{
+            UpdateYtDlp = $ytdlpCheckBox.Checked
+            UpdateFFmpeg = $ffmpegCheckBox.Checked
+        }
+    } else {
+        $updateResults = @{
+            UpdateYtDlp = $false
+            UpdateFFmpeg = $false
+        }
+    }
+    
+    $updateForm.Dispose()
+    return $updateResults
+}
+
+# Show startup update dialog
+$startupUpdates = Show-StartupUpdateDialog
+
 # Create the main form
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "Pirate Cavia, HAR HAR"
-$form.Size = New-Object System.Drawing.Size(520, 860) # Adjusted height for additional elements
+$form.Size = New-Object System.Drawing.Size(520, 880) # Adjusted height to show status bar properly
 $form.StartPosition = "CenterScreen"
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 $form.MaximizeBox = $false
@@ -194,7 +268,80 @@ $updateFFmpegItem.Add_Click({
 $aboutItem = New-Object System.Windows.Forms.ToolStripMenuItem
 $aboutItem.Text = "Over Pirate Cavia"
 $aboutItem.Add_Click({
-    [System.Windows.Forms.MessageBox]::Show("Pirate Cavia - Media Downloader`n`nVersie: 1.0`nBuilt with PowerShell & Windows Forms`n`nHAR HAR!", "Over Pirate Cavia", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    # Create About dialog form
+    $aboutForm = New-Object System.Windows.Forms.Form
+    $aboutForm.Text = "Over Pirate Cavia"
+    $aboutForm.Size = New-Object System.Drawing.Size(400, 300)
+    $aboutForm.StartPosition = "CenterParent"
+    $aboutForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+    $aboutForm.MaximizeBox = $false
+    $aboutForm.MinimizeBox = $false
+    
+    # Main info label
+    $infoLabel = New-Object System.Windows.Forms.Label
+    $infoLabel.Location = New-Object System.Drawing.Point(20, 20)
+    $infoLabel.Size = New-Object System.Drawing.Size(340, 80)
+    $infoLabel.Text = "Pirate Cavia - Media Downloader`n`nVersie: 1.0`nBuilt with PowerShell & Windows Forms`n`nHAR HAR!"
+    $infoLabel.TextAlign = [System.Drawing.ContentAlignment]::TopCenter
+    $aboutForm.Controls.Add($infoLabel)
+    
+    # yt-dlp version button
+    $ytdlpVersionButton = New-Object System.Windows.Forms.Button
+    $ytdlpVersionButton.Location = New-Object System.Drawing.Point(50, 120)
+    $ytdlpVersionButton.Size = New-Object System.Drawing.Size(120, 30)
+    $ytdlpVersionButton.Text = "yt-dlp versie"
+    $ytdlpVersionButton.Add_Click({
+        try {
+            $ytdlpPath = ".\tools\yt-dlp.exe"
+            if (Test-Path $ytdlpPath) {
+                $version = & $ytdlpPath --version 2>$null
+                [System.Windows.Forms.MessageBox]::Show("yt-dlp versie: $version", "yt-dlp Info", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("yt-dlp.exe niet gevonden in tools directory", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+            }
+        } catch {
+            [System.Windows.Forms.MessageBox]::Show("Kon yt-dlp versie niet ophalen: $_", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+        }
+    })
+    $aboutForm.Controls.Add($ytdlpVersionButton)
+    
+    # FFmpeg version button
+    $ffmpegVersionButton = New-Object System.Windows.Forms.Button
+    $ffmpegVersionButton.Location = New-Object System.Drawing.Point(190, 120)
+    $ffmpegVersionButton.Size = New-Object System.Drawing.Size(120, 30)
+    $ffmpegVersionButton.Text = "FFmpeg versie"
+    $ffmpegVersionButton.Add_Click({
+        try {
+            $ffmpegPath = ".\tools\ffmpeg.exe"
+            if (Test-Path $ffmpegPath) {
+                $version = & $ffmpegPath -version 2>$null | Select-Object -First 1
+                if ($version -match "ffmpeg version ([^\s]+)") {
+                    $versionInfo = $matches[1]
+                    [System.Windows.Forms.MessageBox]::Show("FFmpeg versie: $versionInfo", "FFmpeg Info", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                } else {
+                    [System.Windows.Forms.MessageBox]::Show("FFmpeg versie info: $version", "FFmpeg Info", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                }
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("ffmpeg.exe niet gevonden in tools directory", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
+            }
+        } catch {
+            [System.Windows.Forms.MessageBox]::Show("Kon FFmpeg versie niet ophalen: $_", "Fout", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+        }
+    })
+    $aboutForm.Controls.Add($ffmpegVersionButton)
+    
+    # Close button
+    $closeButton = New-Object System.Windows.Forms.Button
+    $closeButton.Location = New-Object System.Drawing.Point(160, 180)
+    $closeButton.Size = New-Object System.Drawing.Size(80, 30)
+    $closeButton.Text = "Sluiten"
+    $closeButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+    $aboutForm.Controls.Add($closeButton)
+    $aboutForm.AcceptButton = $closeButton
+    
+    # Show dialog
+    [void]$aboutForm.ShowDialog()
+    $aboutForm.Dispose()
 })
 
 [void]$helpMenu.DropDownItems.Add($updateYtDlpItem)
@@ -802,6 +949,60 @@ $browseButton.Add_Click({
         Write-Log "Geselecteerde opslaglocatie: $($folderBrowser.SelectedPath)"
     }
 })
+
+# Process startup updates if requested
+if ($startupUpdates.UpdateYtDlp -or $startupUpdates.UpdateFFmpeg) {
+    # Create a simple progress form
+    $progressForm = New-Object System.Windows.Forms.Form
+    $progressForm.Text = "Updates uitvoeren..."
+    $progressForm.Size = New-Object System.Drawing.Size(300, 100)
+    $progressForm.StartPosition = "CenterScreen"
+    $progressForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+    $progressForm.MaximizeBox = $false
+    $progressForm.MinimizeBox = $false
+    
+    $progressLabel = New-Object System.Windows.Forms.Label
+    $progressLabel.Location = New-Object System.Drawing.Point(20, 20)
+    $progressLabel.Size = New-Object System.Drawing.Size(250, 30)
+    $progressLabel.Text = "Updates worden uitgevoerd..."
+    $progressForm.Controls.Add($progressLabel)
+    
+    $progressForm.Show()
+    $progressForm.Refresh()
+    
+    if ($startupUpdates.UpdateYtDlp) {
+        $progressLabel.Text = "yt-dlp updaten..."
+        $progressForm.Refresh()
+        
+        try {
+            $updateScript = ".\tools\updaters\update-ytdlp.ps1"
+            $ytdlPath = ".\tools"
+            if (Test-Path $updateScript) {
+                & powershell.exe -ExecutionPolicy Bypass -File $updateScript -DownloadPath $ytdlPath | Out-Null
+            }
+        } catch {
+            # Continue even if update fails
+        }
+    }
+    
+    if ($startupUpdates.UpdateFFmpeg) {
+        $progressLabel.Text = "FFmpeg updaten..."
+        $progressForm.Refresh()
+        
+        try {
+            $updateScript = ".\tools\updaters\update-ffmpeg.ps1"
+            $ffmpegPath = ".\tools"
+            if (Test-Path $updateScript) {
+                & powershell.exe -ExecutionPolicy Bypass -File $updateScript -DownloadPath $ffmpegPath | Out-Null
+            }
+        } catch {
+            # Continue even if update fails
+        }
+    }
+    
+    $progressForm.Close()
+    $progressForm.Dispose()
+}
 
 # Show the form
 $form.Add_Shown({$form.Activate()})

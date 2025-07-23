@@ -146,29 +146,68 @@ function Download-FFmpeg {
         
         if (-not $sevenZipFound) {
             # Probeer PowerShell Expand-Archive als fallback (werkt alleen voor ZIP, niet voor 7Z)
-            throw "7-Zip niet gevonden. FFmpeg gebruikt .7z formaat dat PowerShell niet kan uitpakken."
-        }
-        
-        Write-Host "Uitpakken van archief..." -ForegroundColor Yellow
-        
-        # Extract naar tijdelijke directory
-        if (Test-Path $extractPath) { 
-            Remove-Item $extractPath -Recurse -Force 
-        }
-        New-Item -ItemType Directory -Path $extractPath -Force | Out-Null
-        
-        # Uitpakken met 7-Zip
-        $extractArgs = "x `"$archivePath`" `"-o$extractPath`" -y"
-        $process = Start-Process $sevenZipPath -ArgumentList $extractArgs -Wait -PassThru -NoNewWindow
-        
-        if ($process.ExitCode -ne 0) {
-            throw "Uitpakken mislukt (exit code: $($process.ExitCode))"
+            Write-Host "7-Zip niet gevonden. Proberen om alternatieve methode te gebruiken..." -ForegroundColor Yellow
+            
+            # Probeer met .NET Framework System.IO.Compression (alleen voor ZIP)
+            try {
+                Add-Type -AssemblyName System.IO.Compression.FileSystem
+                [System.IO.Compression.ZipFile]::ExtractToDirectory($archivePath, $extractPath)
+                Write-Host "Uitpakken gelukt met .NET methode" -ForegroundColor Green
+            } catch {
+                throw "7-Zip niet gevonden en .NET uitpakken mislukt. FFmpeg gebruikt .7z formaat dat speciale tools vereist. Installeer 7-Zip of gebruik een andere download URL."
+            }
+        } else {
+            Write-Host "Uitpakken van archief met 7-Zip..." -ForegroundColor Yellow
+            
+            # Extract naar tijdelijke directory
+            if (Test-Path $extractPath) { 
+                Remove-Item $extractPath -Recurse -Force 
+            }
+            New-Item -ItemType Directory -Path $extractPath -Force | Out-Null
+            
+            # Uitpakken met 7-Zip
+            $extractArgs = "x `"$archivePath`" `"-o$extractPath`" -y"
+            Write-Host "7-Zip command: $sevenZipPath $extractArgs" -ForegroundColor Gray
+            $process = Start-Process $sevenZipPath -ArgumentList $extractArgs -Wait -PassThru -NoNewWindow
+            
+            if ($process.ExitCode -ne 0) {
+                throw "7-Zip uitpakken mislukt (exit code: $($process.ExitCode))"
+            }
+            Write-Host "7-Zip uitpakken succesvol" -ForegroundColor Green
         }
         
         # Zoek naar de bin directory met executables
+        Write-Host "Zoeken naar executables in uitgepakte archief..." -ForegroundColor Yellow
+        Write-Host "Extract path: $extractPath" -ForegroundColor Gray
+        
+        # Laat alle directories zien voor debugging
+        $allDirs = Get-ChildItem -Path $extractPath -Recurse -Directory
+        Write-Host "Gevonden directories:" -ForegroundColor Gray
+        $allDirs | ForEach-Object { Write-Host "  $($_.FullName)" -ForegroundColor Gray }
+        
         $binDir = Get-ChildItem -Path $extractPath -Recurse -Directory -Name "bin" | Select-Object -First 1
         if (-not $binDir) {
-            throw "Bin directory niet gevonden in uitgepakte archief"
+            # Zoek ook naar andere mogelijke executable locaties
+            Write-Host "Zoeken naar executables in root directories..." -ForegroundColor Yellow
+            $possibleDirs = Get-ChildItem -Path $extractPath -Recurse -Directory | Where-Object { 
+                $_.Name -match "(bin|exe|ffmpeg)" -or 
+                (Get-ChildItem $_.FullName -Filter "ffmpeg.exe" -ErrorAction SilentlyContinue)
+            }
+            
+            if ($possibleDirs) {
+                $binDir = $possibleDirs[0].Name
+                Write-Host "Alternatieve directory gevonden: $binDir" -ForegroundColor Yellow
+            } else {
+                # Zoek direct naar ffmpeg.exe bestanden
+                $ffmpegFiles = Get-ChildItem -Path $extractPath -Recurse -Filter "ffmpeg.exe"
+                if ($ffmpegFiles) {
+                    $binDir = Split-Path $ffmpegFiles[0].FullName -Parent
+                    $binDir = Split-Path $binDir -Leaf
+                    Write-Host "ffmpeg.exe gevonden in: $binDir" -ForegroundColor Yellow
+                } else {
+                    throw "Geen bin directory of ffmpeg executables gevonden in uitgepakte archief"
+                }
+            }
         }
         
         $binPath = Join-Path $extractPath $binDir
