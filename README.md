@@ -22,8 +22,28 @@ Pirate Cavia biedt een intuïtieve grafische interface voor het downloaden van v
 ### Automatische installatie (Aanbevolen)
 
 1. Clone of download deze repository
-2. Voer het installatiescript uit als Administrator:
-   ```cmd
+
+2. **Open PowerShell als Administrator** (belangrijk!):
+   
+   **Windows 10/11:**
+   - Druk op `Windows toets + X`
+   - Selecteer "Windows PowerShell (Admin)" of "Terminal (Admin)"
+   - Klik "Ja" bij de UAC waarschuwing
+   
+   **Alternatieve methode (alle Windows versies):**
+   - Klik op Start menu
+   - Type "powershell"
+   - Rechtermuisklik op "Windows PowerShell"
+   - Selecteer "Als administrator uitvoeren"
+   - Klik "Ja" bij de UAC waarschuwing
+
+3. Navigeer naar de project directory:
+   ```powershell
+   cd "C:\pad\naar\jouw\pirate-cavia-directory"
+   ```
+
+4. Voer het installatiescript uit:
+   ```powershell
    powershell -ExecutionPolicy Bypass -File install.ps1
    ```
 
